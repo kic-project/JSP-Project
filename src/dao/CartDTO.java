@@ -39,6 +39,7 @@ public class CartDTO implements Serializable {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+	public void setCnt(int cnt) {
 	
 	
 }
