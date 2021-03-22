@@ -1,0 +1,67 @@
+/* WebContent/css/main.css */
+table {border-collapse: collapse;
+ border-top:1px solid black; width:80%; margin: auto; margin-top: 10px; }
+th,td {
+	border : 3px solid #bcbcbc;
+	text-align: center;  	padding : 8px;
+}
+th {    background-color: #4CAF50; 	color : white; 
+ margin-top:10px;  }
+ tr{
+ 
+ }
+td {	background-color: #F2F2F2;}
+caption {
+	color : #111111; 	font-size: 20px;
+	background-color: #FFFFFF;
+}
+input[type=text],input[type=password],textarea {
+	width : 100%;
+}
+p{ text-align:right;}
+a{margin:0; padding:3px; text-decoration:none; color:black;}
+*{padding: 0;
+	margin: 0;}
+li {
+	list-style-type: none;
+}
+.head{
+	background-color: #f6f5ef;
+}
+.logo{
+	float: left;
+	margin: 20px 0 10px 20px;
+}
+.top{
+	float: right;
+	margin: 30px 20px 0 0;
+}
+.menu{
+	clear: both;
+	height: 40px;
+	background-color: #000000;
+	color: white;
+	text-align: center;
+	padding-top: 15px;
+	font-size: 20px; 
+}
+.menu li{
+	display: inline;
+}
+.item{
+	margin: 0 30px 0 30px;
+}
+.nav-categories {
+	background-color: black;
+	color: white;
+	height: 3rem;
+	padding: 0 20%;
+}
+
+a.nav-category-item {
+	color: white;
+}
+
+a.navbar-brand, a.nav-link {
+	color: black;
+}
