@@ -13,9 +13,9 @@ public class MemberDao {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
 		String sql="insert into memberpro"
-				+"(id, pass, name, birthday, gender, email, tel, picture, address, point, totalprice, shoplist, memlevel, coupon, orderstatus, zip_num)"
+				+"(id, pass, name, gender, email, tel, picture, address, point, totalprice, shoplist, memlevel, coupon, orderstatus, birthday, zip_num)"
 				
-				+"values(?,?,?,?,?,?,?,?,?,0,0,null,?,null,null,null)";
+				+"values(?,?,?,?,?,?,?,?,0,0,null,1,null,null,0,null)";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem.getId());
@@ -26,7 +26,7 @@ public class MemberDao {
 			pstmt.setString(6, mem.getTel());
 			pstmt.setString(7, mem.getPicture());
 			pstmt.setString(8, mem.getAddress());
-			pstmt.setString(9, "welcome");
+			// pstmt.setString(9, "welcome");
 			return pstmt.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
