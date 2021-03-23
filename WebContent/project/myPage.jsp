@@ -59,6 +59,8 @@ location.href="main.jsp";
 					<li class="nav-item active"><a class="nav-link" href="#">소개
 							<!-- <span class="sr-only">(current)</span> -->
 					</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="logout.jsp">로그아웃</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="CartView.jsp?id=<%=login %>">장바구니</a></li>
 
