@@ -28,7 +28,7 @@
 	crossorigin="anonymous">
 
 <!-- Custom styles for this template -->
-<link href="/project/css/main.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/project/css/main.css">
 
 
 </head>
