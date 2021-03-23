@@ -1,0 +1,165 @@
+--멤버
+
+--alter table memberpro drop primary key cascade;
+--drop table memberpro;
+create table memberpro(
+id varchar2(20) primary key,
+pass varchar2(20),
+name varchar2(20),
+birthday number(10),
+gender number(1),
+tel varchar2(20),
+email varchar2(50),
+picture varchar2(200),
+address varchar2(200),
+point float(10),
+totalprice number(20),
+shoplist varchar2(200),
+memlevel varchar2(50),
+coupon varchar2(100),
+orderstatus varchar2(20),
+zip_num varchar2(20),
+);
+
+
+
+
+--상품
+
+--alter table product drop primary key cascade;
+--drop table product;
+create table product(
+    pseq       number(5)     primary key,
+    name       varchar2(100),
+    kind       char(1),   
+    price1     number(7)     default '0',
+    price2     number(7)     default '0',
+    price3     number(7)     default '0',
+    content    varchar2(1000),
+    image      varchar2(50)  default 'default.jpg',
+    useyn      char(1)       default 'y',
+    bestyn     char(1)       default 'n',
+    indate     date          default sysdate  
+);
+
+--drop sequence product_seq;
+create sequence product_seq start with 1;
+
+
+
+
+--장바구니
+
+--alter table cart drop primary key cascade;
+--drop table cart;
+create table cart (
+  cseq         number(10)    primary key,  -- 장바구니번호
+  id           varchar(16)   references member(id),  -- 주문자 아이디(FK 　member.id) 
+  pseq         number(5)     references product(pseq), -- 주문 상품번호(FK product.pseq) 
+  quantity     number(5)     default 1,        -- 주문 수량
+  result       char(1)       default '1',      -- 1미처리 2처리 (배송상태 표현)
+  indate       date          default SYSDATE   -- 주문일
+);
+
+--drop sequence cart_seq;
+create sequence cart_seq start with 1;
+
+
+
+
+
+--주문
+
+--alter table orders drop primary key cascade;
+--drop table orders;
+create table orders(
+  oseq        number(10)    primary key,           -- 주문번호  
+  id          varchar(16)   references member(id), -- 주문자 아이디
+  indate      date          default sysdate       -- 주문일
+);
+
+--drop sequence orders_seq;
+create sequence orders_seq start with 1;
+
+
+
+
+--주문상세
+
+--alter table order_detail drop primary key cascade;
+--drop table order_detail;
+create table order_detail(
+  odseq       number(10)   primary key,        -- 주문상세번호
+  oseq        number(10)   references orders(oseq),   -- 주문번호  
+  pseq        number(5)    references product(pseq),  -- 상품번호
+  quantity    number(5)    default 1,                 -- 주문수량
+  result      char(1)      default '1'                -- 1 미처리 2 처리  (배송상태 표현)   
+);
+
+--drop sequence order_detail_seq;
+create sequence order_detail_seq start with 1;
+
+
+
+
+insert into memberpro(id, pass, name, birthday, gender, tel, email, picture, address, zip_num) values
+('kic', '1111', 'kic', 990101, 1, '017-777-7777', 'aaa@aaa', '', '서울시', '133-110');
+insert into product(pseq, name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '후드짚업', '1', '40000', '35000', '3500', '후드짚업 입니다.', '1-1.jpg');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn) values(
+product_seq.nextval, '블레이져', '1', '40000', '55000', '5000','블레이져 입니다', '2-1.jpg', 'n');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image, bestyn) values( 
+product_seq.nextval, '자켓', '1', '10000', '30000', '2000', '자켓 입니다.', '3-1.jpg', 'n');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image, bestyn) values(
+product_seq.nextval, '아우터', '1', '5000', '47000', '500', '아우터 입니다.', '4-1.jpg', 'y');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image, bestyn) values(
+product_seq.nextval, '그래픽 맨투맨', '2', '10000', '30000', '2000', '그래픽 맨투맨 입니다.', '5-1.jpg', 'n');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '맨투맨', '2', '12000', '30000', '6000', '맨투맨 입니다.', '6-1.jpg');
+insert into product(pseq, name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '반팔티', '2', '40000', '35000', '3500', '반팔티 입니다.', '7-1.jpg');
+insert into product(pseq, name, kind, price1, price2, price3, content, image, bestyn) values(
+product_seq.nextval, '롱스커트', '3', '40000', '55000', '5000','롱스커트 입니다', '8-1.jpg', 'n');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image, bestyn) values( 
+product_seq.nextval, '청치마', '3', '10000', '30000', '2000', '청치마 입니다.', '9-1.jpg', 'n');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image, bestyn) values(
+product_seq.nextval, '트레이닝팬츠', '3', '5000', '47000', '500', '트레이닝팬츠 입니다.', '10-1.jpg', 'y');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image, bestyn) values(
+product_seq.nextval, '청바지', '3', '10000', '30000', '2000', '청바지 맨투맨 입니다.', '11-1.jpg', 'n');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '볼캡', '4', '12000', '30000', '6000', '볼캡 입니다.', '13-1.jpg');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '패션삭스', '4', '12000', '30000', '6000', '패션삭스 입니다.', '14-1.jpg');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '머플러', '4', '12000', '30000', '6000', '머플러 입니다.', '15-1.jpg');
+insert into product(pseq,  name, kind, price1, price2, price3, content, image) values(
+product_seq.nextval, '남성슈즈', '4', '12000', '30000', '6000', '볼캡 입니다.', '12-1.jpg');
+
+
+
+
+--장바구니 카트 뷰
+
+create or replace view cart_view
+as
+select o.cseq, o.id, o.pseq, m.name mname, p.name pname, 
+o.quantity, o.indate, p.price2, o.result 
+from cart o, memberpro m, product p 
+where o.id = m.id and o.pseq = p.pseq
+and result='1';
+
+
+
+
+-- 주문 카트 뷰
+
+create or replace view order_view
+as
+select d.odseq, o.oseq, o.id, o.indate, d.pseq,d.quantity, m.name mname,
+m.zip_num, m.address, m.tel, p.name pname, p.price2, d.result   
+from orders o, order_detail d, memberpro m, product p 
+where o.oseq=d.oseq and o.id = m.id and d.pseq = p.pseq;
+           
+commit;
+
+

@@ -3,6 +3,7 @@ public class Member {
 private String id;
 private String pass;
 private String name;
+private int birthday;
 private int gender;
 private String tel;
 private String email;
@@ -17,7 +18,7 @@ private String tempShoplist;
 private String memlevel;
 private String coupon;
 private String orderstatus;
-
+private String zip_num;
 
 public String getId() {
 	return id;
@@ -36,6 +37,12 @@ public String getName() {
 }
 public void setName(String name) {
 	this.name = name;
+}
+public int getBirthday() {
+	return birthday;
+}
+public void setBirthday(int birthday) {
+	this.birthday = birthday;
 }
 public int getGender() {
 	return gender;
@@ -121,13 +128,20 @@ public String getTempShoplist() {
 public void setTempShoplist(String tempShoplist) {
 	this.tempShoplist = tempShoplist;
 }
+public String getZipnum() {
+	return zip_num;
+}
+public void setZipnum(String zip_num) {
+	this.zip_num = zip_num;
+}
+
 @Override
 public String toString() {
-	return "Member [id=" + id + ", pass=" + pass + ", name=" + name + ", gender=" + gender + ", tel=" + tel + ", email="
+	return "Member [id=" + id + ", pass=" + pass + ", name=" + name + ", birthday=" + birthday + ", gender=" + gender + ", tel=" + tel + ", email="
 			+ email + ", picture=" + picture + ", address=" + address + ", point=" + point + ", tempPoint=" + tempPoint
 			+ ", totalprice=" + totalprice + ", tempTotalprice=" + tempTotalprice + ", shoplist=" + shoplist
 			+ ", tempShoplist=" + tempShoplist + ", memlevel=" + memlevel + ", coupon=" + coupon + ", orderstatus="
-			+ orderstatus + "]";
+			+ orderstatus + ", zip_num=" + zip_num +   "]";
 }
 
 }

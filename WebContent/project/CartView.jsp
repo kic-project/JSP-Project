@@ -1,11 +1,11 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="dao.CartDTO"%>
+<%@page import="dao.CartDao"%>
 <%@page import="dao.MemberDao"%>
 <%@page import="Model.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%
-    String login=(String)session.getAttribute("login");
+	String login=(String)session.getAttribute("login");
     String id=request.getParameter("id");
     if(login==null||login.trim().equals("")){
 %>
@@ -13,17 +13,18 @@
 alert("로그인이 필요합니다. 로그인하세요.")
 location.href="loginForm.jsp";
 </script>
-<%}else{
-	Member mem=new MemberDao().selectOne(id);
-	%>
 <%
-request.setCharacterEncoding("utf-8");
-ArrayList<CartDTO> cart = null;
+	}else{
+	Member mem=new MemberDao().selectOne(id);
+%>
+<%
+	request.setCharacterEncoding("utf-8");
+ArrayList<CartDao> cart = null;
 Object obj = session.getAttribute("cart");
 if(obj == null) {	
-	cart = new ArrayList<CartDTO>();	
+	cart = new ArrayList<CartDao>();	
 } else {			
-	cart = (ArrayList<CartDTO>) obj;
+	cart = (ArrayList<CartDao>) obj;
 }
 %>
 
@@ -59,7 +60,7 @@ function fnGo(){
 			<th>가격</th>
 		</tr>
 <%
-String list="";
+	String list="";
 if(cart.size() == 0) {
 	out.println("<tr align='center'>");
 	out.println("<td colspan= '5'>");
@@ -72,7 +73,7 @@ else {
 	int totalSum = 0, total = 0;
 	DecimalFormat df = new DecimalFormat("￦#,##0");
 	for(int i = 0; i < cart.size(); i++) {
-		CartDTO dto = cart.get(i);
+		CartDao dto = cart.get(i);
 		out.println("<tr align= 'center'>");
 		out.println("<td>" + (i + 1) + "</td>");
 		out.println("<td>" + dto.getName() + "</td>");
@@ -88,7 +89,8 @@ else {
 		mem.setTempTotalprice(totalSum);
 	
 		out.println("<tr align = 'center'>");
-		out.println("<td colspan= '4'>");%>
+		out.println("<td colspan= '4'>");
+%>
 		<form action="afterOrder.jsp" name="f" method="post">
 		<input type="submit" value="결제하기" <%session.removeAttribute("cart"); %>>
 		<input type="button" value="장바구니 비우기" onclick="fnClear()" >

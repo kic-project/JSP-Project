@@ -13,8 +13,9 @@ public class MemberDao {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
 		String sql="insert into memberpro"
-				+"(id, pass, name, gender, email, tel, picture, address, point, totalprice, shoplist, memlevel, coupon, orderstatus)"
-				+"values(?,?,?,?,?,?,?,?,0,0,null,?,null,null)";
+				+"(id, pass, name, birthday, gender, email, tel, picture, address, point, totalprice, shoplist, memlevel, coupon, orderstatus, zip_num)"
+				
+				+"values(?,?,?,?,?,?,?,?,?,0,0,null,?,null,null,null)";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem.getId());

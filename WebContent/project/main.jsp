@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@page import="dao.MemberDao"%>
+<%@page import="dao.MemberDao"%>
 <%@page import="Model.Member"%>
 <%
 	String login = (String) session.getAttribute("login");
