@@ -23,6 +23,20 @@
 		var op = "width=500, height=150, left=50, top=150";
 		open("pictureimgForm.jsp", '', op);
 	}
+
+	function checkId() {
+		var inputId = document.getElementById("inputId");
+		if (inputId == "") {
+			alert("아이디를 입력해주세요");
+			return false;
+		}
+
+		if (!inputId.checkValidity()) {
+			document.getElementById("demo").innerHTML = inpObj.validationMessage;
+		} else {
+			document.getElementById("demo").innerHTML = "Input OK";
+		}
+	}
 </script>
 </head>
 
@@ -70,7 +84,7 @@
 	</nav>
 
 
-<!-- 	<form action="join.jsp" name="f" method="post">
+	<!-- 	<form action="join.jsp" name="f" method="post">
 		<input type="hidden" name="picture" value="">
 		<table>
 
@@ -117,7 +131,8 @@
 	<h3 class="mt-3 mb-3 text-center">회원가입</h3>
 
 	<form class="container-md p-3 col-8 mb-5 mx-auto"
-		action="<%=request.getContextPath()%>/project/join.jsp" name="f" method="post">
+		action="<%=request.getContextPath()%>/project/join.jsp" name="f"
+		method="post">
 
 		<div class="mb-3">
 			<label for="inputId" class="form-label">아이디</label> <input
@@ -133,13 +148,13 @@
 
 		<div class="mb-3">
 			<label for="inputPasswordCheck" class="form-label">비밀번호 확인</label> <input
-				type="password" class="form-control" id="inputPasswordCheck" name="check" 
-				placeholder="비밀번호 확인">
+				type="password" class="form-control" id="inputPasswordCheck"
+				name="check" placeholder="비밀번호 확인">
 		</div>
-		
+
 		<div class="mb-3">
 			<label for="inputName" class="form-label">이름</label> <input
-				type="text" class="form-control" id="inputName" name="name" 
+				type="text" class="form-control" id="inputName" name="name"
 				placeholder="이름">
 		</div>
 
@@ -173,8 +188,8 @@
 
 		<div class="mb-3">
 			<label for="inputRecommender" class="form-label">추천인</label> <input
-				type="text" class="form-control" id="inputRecommender" name="recommender" 
-				placeholder="추천인 아이디 입력">
+				type="text" class="form-control" id="inputRecommender"
+				name="recommender" placeholder="추천인 아이디 입력">
 		</div>
 
 		<div class="mb-3 form-check">
