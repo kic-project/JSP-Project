@@ -6,7 +6,7 @@
 <meta charset="EUC-KR">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>È¸¿ø°¡ÀÔ È­¸é</title>
+<title>íšŒì›ê°€ìž… í™”ë©´</title>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -27,7 +27,7 @@
 	function checkId() {
 		var inputId = document.getElementById("inputId");
 		if (inputId == "") {
-			alert("¾ÆÀÌµð¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
+			alert("ì•„ì´ë””ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”");
 			return false;
 		}
 
@@ -57,17 +57,17 @@
 				<ul class="navbar-nav ml-auto">
 
 					<!-- 
-					<li class="nav-item"><a class="nav-link" href="#">¼Ò°³ <span class="sr-only">(current)</span>
+					<li class="nav-item"><a class="nav-link" href="#">ì†Œê°œ <span class="sr-only">(current)</span>
 					</a></li>
  					-->
 
-					<li class="nav-item"><a class="nav-link" href="cartForm.jsp">Àå¹Ù±¸´Ï</a></li>
+					<li class="nav-item"><a class="nav-link" href="cartForm.jsp">ìž¥ë°”êµ¬ë‹ˆ</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="myPage.jsp">¸¶ÀÌÆäÀÌÁö</a></li>
+					<li class="nav-item"><a class="nav-link" href="myPage.jsp">ë§ˆì´íŽ˜ì´ì§€</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="loginForm.jsp">·Î±×ÀÎ</a></li>
+					<li class="nav-item"><a class="nav-link" href="loginForm.jsp">ë¡œê·¸ì¸</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="joinForm.jsp">È¸¿ø°¡ÀÔ</a></li>
+					<li class="nav-item"><a class="nav-link" href="joinForm.jsp">íšŒì›ê°€ìž…</a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,10 +76,10 @@
 	<!-- Categories Navbar -->
 	<nav class="navbar navbar-expand-lg nav-categories">
 		<div class="container col-lg-12">
-			<a class="nav-category-item" href="#">ÀÚÄÏ</a> <a
-				class="nav-category-item" href="#">»óÀÇ</a> <a
-				class="nav-category-item" href="#">ÇÏÀÇ</a> <a
-				class="nav-category-item" href="#">±âÅ¸</a>
+			<a class="nav-category-item" href="#">ìžì¼“</a> <a
+				class="nav-category-item" href="#">ìƒì˜</a> <a
+				class="nav-category-item" href="#">í•˜ì˜</a> <a
+				class="nav-category-item" href="#">ê¸°íƒ€</a>
 		</div>
 	</nav>
 
@@ -91,145 +91,151 @@
 			<tr>
 				<td rowspan="4" valign="bottom"><img src="" width="100"
 					height="120" id="pic"><br> <font size="1"><a
-						href="javascript:win_upload()">»çÁøµî·Ï</a></font></td>
-				<td>¾ÆÀÌµð</td>
+						href="javascript:win_upload()">ì‚¬ì§„ë“±ë¡</a></font></td>
+				<td>ì•„ì´ë””</td>
 				<td><input type="text" name="id"></td>
 			</tr>
 			<tr>
-				<td>ºñ¹Ð¹øÈ£</td>
+				<td>ë¹„ë°€ë²ˆí˜¸</td>
 				<td><input type="password" name="pass"></td>
 			</tr>
 			<tr>
-				<td>ÀÌ¸§</td>
+				<td>ì´ë¦„</td>
 				<td><input type="text" name="name"></td>
 			</tr>
 			<tr>
-				<td>¼ºº°</td>
-				<td><input type="radio" name="gender" value="1" checked>³²
-					<input type="radio" name="gender" value="2">¿©</td>
+				<td>ì„±ë³„</td>
+				<td><input type="radio" name="gender" value="1" checked>ë‚¨
+					<input type="radio" name="gender" value="2">ì—¬</td>
 			</tr>
 			<tr>
-				<td>ÀüÈ­¹øÈ£</td>
+				<td>ì „í™”ë²ˆí˜¸</td>
 				<td colspan="2"><input type="text" name="tel"></td>
 			</tr>
 			<tr>
-				<td>ÀÌ¸ÞÀÏ</td>
+				<td>ì´ë©”ì¼</td>
 				<td colspan="2"><input type="text" name="email"></td>
 			</tr>
 			<tr>
-				<td>ÁÖ¼Ò</td>
+				<td>ì£¼ì†Œ</td>
 				<td colspan="2"><input type="text" name="address"></td>
 			</tr>
 			<tr>
-				<td colspan="3"><input type="submit" value="È¸¿ø°¡ÀÔ"></td>
+				<td colspan="3"><input type="submit" value="íšŒì›ê°€ìž…"></td>
 			</tr>
 		</table>
 	</form> -->
 
 
 	<!-- Join Content -->
-	<h3 class="mt-3 mb-3 text-center">È¸¿ø°¡ÀÔ</h3>
+	<h3 class="mt-3 mb-3 text-center">íšŒì›ê°€ìž…</h3>
 
 	<form class="container-md p-3 col-8 mb-5 mx-auto"
 		action="<%=request.getContextPath()%>/project/join.jsp" name="f"
 		method="post">
 
 		<div class="mb-3">
-			<label for="inputId" class="form-label">¾ÆÀÌµð</label> <input
+			<label for="inputId" class="form-label">ì•„ì´ë””</label> <input
 				type="text" class="form-control" id="inputId" name="id"
-				placeholder="¾ÆÀÌµð">
+				placeholder="ì•„ì´ë””">
 		</div>
 
 		<div class="mb-3">
-			<label for="inputPassword" class="form-label">ºñ¹Ð¹øÈ£</label> <input
+			<label for="inputPassword" class="form-label">ë¹„ë°€ë²ˆí˜¸</label> <input
 				type="password" class="form-control" id="inputPassword" name="pass"
-				placeholder="ºñ¹Ð¹øÈ£ (¼ýÀÚ, ¿µ¹®, Æ¯¼ö¹®ÀÚ Á¶ÇÕ ÃÖ¼Ò 8ÀÚ)">
+				placeholder="ë¹„ë°€ë²ˆí˜¸ (ìˆ«ìž, ì˜ë¬¸, íŠ¹ìˆ˜ë¬¸ìž ì¡°í•© ìµœì†Œ 8ìž)">
 		</div>
 
 		<div class="mb-3">
-			<label for="inputPasswordCheck" class="form-label">ºñ¹Ð¹øÈ£ È®ÀÎ</label> <input
+			<label for="inputPasswordCheck" class="form-label">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label> <input
 				type="password" class="form-control" id="inputPasswordCheck"
-				name="check" placeholder="ºñ¹Ð¹øÈ£ È®ÀÎ">
+				name="check" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸">
 		</div>
 
 		<div class="mb-3">
-			<label for="inputName" class="form-label">ÀÌ¸§</label> <input
+			<label for="inputName" class="form-label">ì´ë¦„</label> <input
 				type="text" class="form-control" id="inputName" name="name"
-				placeholder="ÀÌ¸§">
+				placeholder="ì´ë¦„">
 		</div>
 
 		<div class="mb-3">
-			<label for="genderSelect" class="form-label">¼ºº°</label><br /> <select
+			<label for="genderSelect" class="form-label">ì„±ë³„</label><br /> <select
 				id="genderSelect" name="gender"
 				class="form-control form-select form-select-lg mb-3">
-				<option selected>¼±ÅÃ</option>
-				<option value="1">³²</option>
-				<option value="2">¿©</option>
+				<option selected>ì„ íƒ</option>
+				<option value="1">ë‚¨</option>
+				<option value="2">ì—¬</option>
 			</select>
 		</div>
 
 		<div class="mb-3">
-			<label for="inputBirth" class="form-label">»ý³â¿ùÀÏ</label> <input
-				type="text" class="form-control" id="inputBirth" name="birth"
-				placeholder="»ý³â¿ùÀÏ ÀÔ·Â (yymmdd)">
+			<label for="inputBirth" class="form-label">ìƒë…„ì›”ì¼</label> <input
+				type="text" class="form-control" id="inputBirth" name="birthday"
+				placeholder="ìƒë…„ì›”ì¼ ìž…ë ¥ (yymmdd)">
 		</div>
 
 		<div class="mb-3">
-			<label for="inputEmail" class="form-label">ÀÌ¸ÞÀÏ</label> <input
+			<label for="inputEmail" class="form-label">ì´ë©”ì¼</label> <input
 				type="text" class="form-control" id="inputEmail" name="email"
-				placeholder="ÀÌ¸ÞÀÏ@ÁÖ¼Ò">
+				placeholder="ì´ë©”ì¼@ì£¼ì†Œ">
 		</div>
 
 		<div class="mb-3">
-			<label for="inputPhone" class="form-label">ÀüÈ­¹øÈ£</label> <input
+			<label for="inputPhone" class="form-label">ì „í™”ë²ˆí˜¸</label> <input
 				type="text" class="form-control" id="inputPhone" name="tel"
-				placeholder="ÀüÈ­¹øÈ£ ÀÔ·Â (010XXXXXXXX)">
+				placeholder="ì „í™”ë²ˆí˜¸ ìž…ë ¥ (010XXXXXXXX)">
+		</div>
+		
+		<div class="mb-3">
+			<label for="inputAddress" class="form-label">ì£¼ì†Œ</label> <input
+				type="text" class="form-control" id="inputAddress" name="address"
+				placeholder="ì£¼ì†Œ ìž…ë ¥ (ooì‹œ ooêµ¬ ooë™)">
 		</div>
 
 		<div class="mb-3">
-			<label for="inputRecommender" class="form-label">ÃßÃµÀÎ</label> <input
+			<label for="inputRecommender" class="form-label">ì¶”ì²œì¸</label> <input
 				type="text" class="form-control" id="inputRecommender"
-				name="recommender" placeholder="ÃßÃµÀÎ ¾ÆÀÌµð ÀÔ·Â">
+				name="recommender" placeholder="ì¶”ì²œì¸ ì•„ì´ë”” ìž…ë ¥">
 		</div>
 
 		<div class="mb-3 form-check">
 			<input type="checkbox" class="form-check-input" id="checkAll">
-			<label class="form-check-label" for="checkAll">¾à°ü ¸ðµÎ µ¿ÀÇ</label>
+			<label class="form-check-label" for="checkAll">ì•½ê´€ ëª¨ë‘ ë™ì˜</label>
 		</div>
 
 		<div class="mb-3 p-3 border">
 			<div class="mb-3 form-check">
 				<input type="checkbox" class="form-check-input" id="ageCheck">
-				<label class="form-check-label" for="ageCheck">¸¸ 14¼¼ ÀÌ»óÀÔ´Ï´Ù.
+				<label class="form-check-label" for="ageCheck">ë§Œ 14ì„¸ ì´ìƒìž…ë‹ˆë‹¤.
 				</label>
 			</div>
 
 			<div class="mb-3 form-check">
 				<input type="checkbox" class="form-check-input" id="agreeCheck">
-				<label class="form-check-label" for="agreeCheck">¾à°ü µ¿ÀÇ </label>
+				<label class="form-check-label" for="agreeCheck">ì•½ê´€ ë™ì˜ </label>
 			</div>
 
 			<div class="mb-3 form-check">
 				<input type="checkbox" class="form-check-input" id="privacyCheck">
-				<label class="form-check-label" for="privacyCheck">°³ÀÎÁ¤º¸¼öÁý ¹×
-					ÀÌ¿ë¿¡ ´ëÇÑ ¾È³» </label>
+				<label class="form-check-label" for="privacyCheck">ê°œì¸ì •ë³´ìˆ˜ì§‘ ë°
+					ì´ìš©ì— ëŒ€í•œ ì•ˆë‚´ </label>
 			</div>
 
 			<div class="mb-3 form-check">
 				<input type="checkbox" class="form-check-input" id="eventCheck">
-				<label class="form-check-label" for="eventCheck">ÀÌº¥Æ®/¸¶ÄÉÆÃ ¼ö½Å
-					µ¿ÀÇ </label>
+				<label class="form-check-label" for="eventCheck">ì´ë²¤íŠ¸/ë§ˆì¼€íŒ… ìˆ˜ì‹ 
+					ë™ì˜ </label>
 			</div>
 
 			<div class="mb-3 form-check">
 				<input type="checkbox" class="form-check-input" id="nightCheck">
-				<label class="form-check-label" for="nightCheck">¾ß°£ ÇýÅÃ ¾Ë¸² ¼ö½Å
-					µ¿ÀÇ </label>
+				<label class="form-check-label" for="nightCheck">ì•¼ê°„ í˜œíƒ ì•Œë¦¼ ìˆ˜ì‹ 
+					ë™ì˜ </label>
 			</div>
 		</div>
 
 		<button type="submit" class="w-100 btn btn-lg btn-primary mb-5"
-			value="È¸¿ø°¡ÀÔ">¿Ï·á</button>
+			value="íšŒì›ê°€ìž…">ì™„ë£Œ</button>
 
 	</form>
 
@@ -241,8 +247,8 @@
 
 		<div class="container">
 			<p class="m-0 text-center text-white">
-				<span>°í°´¼¾ÅÍ : XXXX-XXXX</span> <span>&emsp;</span> <span>ÆäÀÌ½ººÏ</span>
-				<span>ÀÎ½ºÅ¸±×·¥</span>
+				<span>ê³ ê°ì„¼í„° : XXXX-XXXX</span> <span>&emsp;</span> <span>íŽ˜ì´ìŠ¤ë¶</span>
+				<span>ì¸ìŠ¤íƒ€ê·¸ëž¨</span>
 			</p>
 		</div>
 
