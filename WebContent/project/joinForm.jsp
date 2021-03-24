@@ -117,7 +117,7 @@
 	<h3 class="mt-3 mb-3 text-center">회원가입</h3>
 
 	<form class="container-md p-3 col-8 mb-5 mx-auto"
-		action="/project/join.jsp" name="f" method="post">
+		action="<%=request.getContextPath()%>/project/join.jsp" name="f" method="post">
 
 		<div class="mb-3">
 			<label for="inputId" class="form-label">아이디</label> <input
@@ -133,8 +133,14 @@
 
 		<div class="mb-3">
 			<label for="inputPasswordCheck" class="form-label">비밀번호 확인</label> <input
-				type="password" class="form-control" id="inputPasswordCheck"
-				name="check" placeholder="비밀번호 확인">
+				type="password" class="form-control" id="inputPasswordCheck" name="check" 
+				placeholder="비밀번호 확인">
+		</div>
+		
+		<div class="mb-3">
+			<label for="inputName" class="form-label">이름</label> <input
+				type="text" class="form-control" id="inputName" name="name" 
+				placeholder="이름">
 		</div>
 
 		<div class="mb-3">

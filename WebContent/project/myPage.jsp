@@ -3,42 +3,41 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%
-    String login=(String)session.getAttribute("login");
-    String id=request.getParameter("id");
-    if(login==null||login.trim().equals("")){
+	String login = (String) session.getAttribute("login");
+String id = request.getParameter("id");
+if (login == null || login.trim().equals("")) {
 %>
 <script type="text/javascript">
-alert("로그인이 필요합니다. 로그인하세요.")
-location.href="loginForm.jsp";
+	alert("로그인이 필요합니다. 로그인하세요.")
+	location.href = "loginForm.jsp";
 </script>
-<%}else if(!login.equals("admin")&&!login.equals(id)){ %>
+<%
+	} else if (!login.equals("admin") && !login.equals(id)) {
+%>
 <script type="text/javascript">
-alert("자신의 정보만 조회가 가능합니다.");
-location.href="main.jsp";
+	alert("자신의 정보만 조회가 가능합니다.");
+	location.href = "main.jsp";
 </script>
-<% }else{
-	Member mem=new MemberDao().selectOne(id);
-	%>
+<%
+	} else {
+	Member mem = new MemberDao().selectOne(id);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>멤버정보</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/project/css/main.css">
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
 	crossorigin="anonymous">
-	<!-- Bootstrap core JavaScript -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-		crossorigin="anonymous"></script>
+
 <!-- Custom styles for this template -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/project/css/main.css">
+
 </head>
 <body>
 
@@ -61,12 +60,14 @@ location.href="main.jsp";
 							<span class="sr-only">(current)</span>
 					</a></li>
 					 -->
-					
+
 					<li class="nav-item"><a class="nav-link" href="logout.jsp">로그아웃</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="CartView.jsp?id=<%=login %>">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="CartView.jsp?id=<%=login%>">장바구니</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="myPage.jsp?id=<%=login %>">마이페이지</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="myPage.jsp?id=<%=login%>">마이페이지</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="loginForm.jsp">로그인</a></li>
 
@@ -86,33 +87,77 @@ location.href="main.jsp";
 		</div>
 	</nav>
 
-<div class="container" height="100px">
 
-<p class="m-0 text-center text-black">
-<table style="margin-top: 50px;"><tr>
-<td width="33%"><a href="<%=request.getContextPath()%>/project/orderList.jsp?id=<%=mem.getId()%>">주문조회&nbsp;&nbsp;&nbsp;</a></td>
-<td width="33%"><a href="<%=request.getContextPath()%>/project/pointList.jsp?id=<%=mem.getId()%>">포인트: <%=mem.getPoint() %>&nbsp;&nbsp;&nbsp;</a></td>
-<td width="33%">누적금액: <%=mem.getTotalprice() %></td>
-</tr></table></p>
-<table style="margin-bottom: 50px;">
-<tr><td rowspan="6"><img src="img/<%=mem.getPicture() %>" width="200px" height="200px"></td>
-<td>아이디</td>
-<td><%=mem.getId() %></td></tr>
-<tr><td>이름</td>
-<td><%=mem.getName() %></td></tr>
-<tr><td>전화번호</td>
-<td><%=mem.getTel() %></td></tr>
-<tr><td>이메일</td>
-<td><%=mem.getEmail() %></td></tr>
-<tr><td>주소</td>
-<td><%=mem.getAddress() %></td></tr>
-<tr><td>등급</td>
-<td><%=mem.getMemlevel() %></td></tr>
-<tr><td colspan="3"><p>
-<a href="<%=request.getContextPath()%>/project/updateForm.jsp?id=<%=mem.getId()%>">[수정]</a>
-<% if(!id.equals("admin")){%>
-<a href="<%=request.getContextPath()%>/project/deleteForm.jsp?id=<%=mem.getId()%>">[탈퇴]</a>
-<%} %></p></td></tr></table></div>
+
+
+	<!-- Mypage Content -->
+	<h3 class="mt-3 mb-3 text-center">마이페이지</h3>
+
+	<div class="container-md p-3 col-8 mb-5 mx-auto text-center">
+		<div class="h-50 p-3 row border">
+			<div class="col">
+				<a href="<%=request.getContextPath()%>/project/orderList.jsp?id=<%=mem.getId()%>">주문조회</a>
+			</div>
+			
+			<div class="col">
+				포인트: <%=mem.getPoint()%>&nbsp;&nbsp;&nbsp;
+				<%-- <a href="<%=request.getContextPath()%>/project/pointList.jsp?id=<%=mem.getId()%>">
+					포인트: <%=mem.getPoint()%>&nbsp;&nbsp;&nbsp;
+				</a> --%>
+			</div>
+			
+			<div class="col">
+				누적금액: <%=mem.getTotalprice()%>
+			</div>
+		</div>
+		
+		<table class="table table-bordered">
+			<tr>
+				<td style="width:30%" rowspan="6" align="center" bgcolor="skyblue">
+					<img src="img/<%=mem.getPicture()%>" width="200px" height="200px">
+				</td>
+				<td style="width:20%" >아이디</td>
+				<td style="width:55%" ><%=mem.getId()%></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><%=mem.getName()%></td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td><%=mem.getTel()%></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><%=mem.getEmail()%></td>
+			</tr>
+			<tr>
+				<td>주소</td>
+				<td><%=mem.getAddress()%></td>
+			</tr>
+			<tr>
+				<td>등급</td>
+				<td><%=mem.getMemlevel()%></td>
+			</tr>
+
+			<tr>
+				<td colspan="3"><p>
+						<a
+							href="<%=request.getContextPath()%>/project/updateForm.jsp?id=<%=mem.getId()%>">[수정]</a>
+						<%
+							if (!id.equals("admin")) {
+						%>
+						<a
+							href="<%=request.getContextPath()%>/project/deleteForm.jsp?id=<%=mem.getId()%>">[탈퇴]</a>
+						<%
+							}
+						%>
+					</p></td>
+			</tr>
+		</table>
+	</div>
+
+
 
 
 	<!-- Footer -->
