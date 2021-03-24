@@ -146,8 +146,8 @@ function win_upload(){
 
 		<div class="mb-3">
 			<label for="inputBirth" class="form-label">생년월일</label> <input
-				type="text" class="form-control" id="inputBirth" name="birthday"
-				value="<%=mem.getBirthday() %>">
+				type="hidden" class="form-control" id="inputBirth" name="birthday"
+				value="<%=mem.getBirthday() %>"><%=mem.getBirthday() %>
 		</div>
 
 		<div class="mb-3">
