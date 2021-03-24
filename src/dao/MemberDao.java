@@ -15,7 +15,7 @@ public class MemberDao {
 		String sql="insert into memberpro"
 				+"(id, pass, name, gender, email, tel, picture, address, point, totalprice, shoplist, memlevel, coupon, orderstatus, birthday, zip_num)"
 				
-				+"values(?,?,?,?,?,?,?,?,0,0,null,1,null,null,0,null)";
+				+"values(?,?,?,?,?,?,?,?,0,0,null,1,null,null,?,null)";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem.getId());
@@ -26,7 +26,7 @@ public class MemberDao {
 			pstmt.setString(6, mem.getTel());
 			pstmt.setString(7, mem.getPicture());
 			pstmt.setString(8, mem.getAddress());
-			// pstmt.setString(9, "welcome");
+			pstmt.setInt(9, mem.getBirthday());
 			return pstmt.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -50,6 +50,7 @@ public class MemberDao {
 				m.setPass(rs.getString("pass"));
 				m.setName(rs.getString("name"));
 				m.setGender(rs.getInt("gender"));
+				m.setBirthday(rs.getInt("birthday"));
 				m.setTel(rs.getString("tel"));
 				m.setEmail(rs.getString("email"));
 				m.setPicture(rs.getString("picture"));
@@ -72,17 +73,18 @@ public class MemberDao {
 	public int update(Member mem) {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
-		String sql="update memberpro set name=?, gender=?, tel=?,"
+		String sql="update memberpro set name=?, gender=?, birthday=?, tel=?,"
 	+"email=?, picture=?, address=? where id=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem.getName());
 			pstmt.setInt(2, mem.getGender());
-			pstmt.setString(3, mem.getTel());
-			pstmt.setString(4, mem.getEmail());
-			pstmt.setString(5, mem.getPicture());
-			pstmt.setString(6, mem.getAddress());
-			pstmt.setString(7, mem.getId());
+			pstmt.setInt(3, mem.getBirthday());
+			pstmt.setString(4, mem.getTel());
+			pstmt.setString(5, mem.getEmail());
+			pstmt.setString(6, mem.getPicture());
+			pstmt.setString(7, mem.getAddress());
+			pstmt.setString(8, mem.getId());
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
