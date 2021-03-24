@@ -44,7 +44,8 @@ if (obj == null) {
 	crossorigin="anonymous">
 
 <!-- Custom styles for this template -->
-<link rel="stylesheet" href="<%=request.getContextPath() %>/project/css/main.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/project/css/main.css">
 
 <script type="text/javascript">
 	function fnPay() {
@@ -117,6 +118,7 @@ if (obj == null) {
 
 
 
+	<%-- 
 	<div align="center">
 		<h3>장바구니 테스트</h3>
 		<table border="1">
@@ -126,6 +128,84 @@ if (obj == null) {
 				<th>단가</th>
 				<th>주문 수량</th>
 				<th>가격</th>
+			</tr>
+			<%
+				String list = "";
+			if (cart.size() == 0) {
+				out.println("<tr align='center'>");
+				out.println("<td colspan= '5'>");
+				out.println("장바구니에 담긴 상품이 없습니다.");
+				out.println("<a href= 'ShopMallMain.jsp'>주문하기</a>");
+				out.println("</td>");
+				out.println("</tr>");
+			}
+
+			else {
+				int totalSum = 0, total = 0;
+				DecimalFormat df = new DecimalFormat("￦#,##0");
+				for (int i = 0; i < cart.size(); i++) {
+					CartDao dto = cart.get(i);
+					out.println("<tr align= 'center'>");
+					out.println("<td>" + (i + 1) + "</td>");
+					out.println("<td>" + dto.getName() + "</td>");
+					list = list + " " + dto.getName();
+					out.println("<td>" + df.format(dto.getPrice()) + "</td>");
+					out.println("<td>" + dto.getCnt() + "</td>");
+					total = dto.getPrice() * dto.getCnt();
+					out.println("<td>" + df.format(total) + "</td>");
+					out.println("</tr>");
+					totalSum += total;
+				}
+				mem.setTempShoplist(list);
+				mem.setTempPoint(totalSum / 10);
+				mem.setTempTotalprice(totalSum);
+
+				out.println("<tr align = 'center'>");
+				out.println("<td colspan= '4'>");
+			%>
+			<form action="afterOrder.jsp" name="f" method="post">
+				<input type="submit" value="결제하기"
+					<%session.removeAttribute("cart");%>> <input type="button"
+					value="장바구니 비우기" onclick="fnClear()"> <input type="button"
+					value="쇼핑 계속하기" onclick="fnGo()"> <input type="hidden"
+					name="tempTotalprice" value="<%=mem.getTempTotalprice()%>">
+				<input type="hidden" name="tempPoint"
+					value="<%=mem.getTempPoint()%>"> <input type="hidden"
+					name="tempShoplist" value="<%=mem.getTempShoplist()%>"> <input
+					type="hidden" name="totalprice" value="<%=mem.getTotalprice()%>">
+				<input type="hidden" name="point" value="<%=mem.getPoint()%>">
+				<input type="hidden" name="shoplist" value="<%=mem.getShoplist()%>">
+				<input type="hidden" name="id" value="<%=mem.getId()%>">
+			</form>
+			<%
+				out.println("</td>");
+			out.println("<td>");
+			out.println(df.format(totalSum));
+			out.println("</td>");
+			out.println("</tr>");
+			}
+			%>
+		</table>
+	</div>
+ --%>
+
+
+	<!-- Cart Content -->
+	<h3 class="mt-3 mb-3 text-center">장바구니</h3>
+
+	<div class="container-md p-3 col-8 mb-5 mx-auto text-center">
+
+		<table class="table table-bordered">
+			<tr>
+				<th scope="col" colspan="8">일반상품</th>
+			</tr>
+
+			<tr>
+				<th scope="col">번호</th>
+				<th scope="col">상품명</th>
+				<th scope="col">단가</th>
+				<th scope="col">주문 수량</th>
+				<th scope="col">가격</th>
 			</tr>
 			<%
 				String list = "";
