@@ -3,16 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%-- /WebContent/model1/member/updateForm.jsp
-   1. id �Ķ���� 
-   2. �α��λ��� ����.
-            �α׾ƿ����� : �α����� �ʿ��մϴ�. �޼��� ����ϰ�, loginForm.jsp ������ �̵�
-   3. �α��� ����
-      3-1 : id �Ķ���������� login ������ ���ؼ� �ٸ���
-                         �ڽ��� ������ ���� �����մϴ�. �޼��� ���. info.jsp ������ �̵�.
-      3-2 : id �Ķ���������� login ������ ���Ͽ� �ٸ����� login��  �������� ���
-                     ��   id�� �α��� ������ ���� ��� ȭ�鿡 ���� ����ϱ�
-           MemberDao().selectOne(id) �޼��带 �̿��Ͽ� db ���� ��ȸ�ϱ�
-   4. id�� �ش��ϴ� ȸ���� ������ db���� ��ȸ ȭ�� ��� 
+   1. id 파라미터 
+   2. 로그인상태 검증.
+            로그아웃상태 : 로그인이 필요합니다. 메세지 출력하고, loginForm.jsp 페이지 이동
+   3. 로그인 상태
+      3-1 : id 파라미터정보와 login 정보를 비교해서 다르면
+                         자신의 정보만 수정 가능합니다. 메세지 출력. info.jsp 페이지 이동.
+      3-2 : id 파라미터정보와 login 정보를 비교하여 다르지만 login이  관리자인 경우
+                     와   id와 로그인 정보가 같은 경우 화면에 내용 출력하기
+           MemberDao().selectOne(id) 메서드를 이용하여 db 내용 조회하기
+   4. id에 해당하는 회원의 정보를 db에서 조회 화면 출력 
 --%>
 <%
 	String login = (String) session.getAttribute("login");
@@ -20,14 +20,14 @@ String id = request.getParameter("id");
 if (login == null || login.trim().equals("")) {
 %>
 <script type="text/javascript">
-        alert("�α����� �ʿ��մϴ�.");
+        alert("로그인이 필요합니다.");
         location.href="loginForm.jsp";
     </script>
 <%
 	} else if (!login.equals("admin") && !login.equals(id)) {
 %>
 <script type="text/javascript">
-        alert("�ڽ��� ������ ������ �����մϴ�.");
+        alert("자신의 정보만 수정이 가능합니다.");
         location.href="memberInfo.jsp?id=<%=login%>
 	";
 </script>
@@ -36,13 +36,21 @@ if (login == null || login.trim().equals("")) {
 Member mem = new MemberDao().selectOne(id);
 %>
 <!DOCTYPE html><html><head><meta charset="EUC-KR">
-<title>ȸ�� ���� ����</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/project/css/main.css">
+<title>회원 정보 수정</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous">
+
+<!-- Custom styles for this template -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/project/css/main.css">
 <script>
 function input_check(f){
 <%if(!login.equals("admin")){%>
 if(f.pass.value==""){
-	alert("��й�ȣ�� �Է��ϼ���");
+	alert("비밀번호를 입력하세요");
 	f.pass.focus();
 	return false;
 	}
@@ -58,38 +66,116 @@ function win_upload(){
 	open("pictureimgForm.jsp","",op);
 }
 </script>
-</head><body>
-	<form action="update.jsp" name="f" method="post"
-		onsubmit="return input_check(this)">
+</head>
+<body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="main.jsp">Shop</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+
+					<!-- 
+					<li class="nav-item"><a class="nav-link" href="#">소개 <span class="sr-only">(current)</span>
+					</a></li>
+ 					-->
+
+					<li class="nav-item"><a class="nav-link" href="cartForm.jsp">장바구니</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="myPage.jsp">마이페이지</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="loginForm.jsp">로그인</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="joinForm.jsp">회원가입</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Categories Navbar -->
+	<nav class="navbar navbar-expand-lg nav-categories">
+		<div class="container col-lg-12">
+			<a class="nav-category-item" href="#">자켓</a> <a
+				class="nav-category-item" href="#">상의</a> <a
+				class="nav-category-item" href="#">하의</a> <a
+				class="nav-category-item" href="#">기타</a>
+		</div>
+	</nav>
+
+
+	<form class="container-md p-3 col-8 mb-5 mx-auto"
+		action="<%=request.getContextPath()%>/project/update.jsp" name="f"
+		method="post" onsubmit="return input_check(this)">
 		<input type="hidden" name="picture" >
-		<table style="width:80%; margin: auto;"><caption>MODEL1 ȸ�� ���� ����</caption>
+		
 			<tr><td rowspan="5" valign="bottom"><img
 					src="img/<%=mem.getPicture()%>" width="100" height="120" id="pic"><br>
-					<font size="1"><a href="javascript:win_upload()">��������</a></font></td>
-				<td>���̵�</td>
-				<td><input type="hidden" name="id" value="<%=mem.getId() %>"><%=mem.getId() %></td>
-			</tr><tr><td>��й�ȣ</td>
-				<td><input type="password" name="pass"></td></tr>
-			<tr><td>�̸�</td>
-				<td><input type="hidden" name="name" value="<%=mem.getId() %>"><%=mem.getName() %></td>	</tr>
+					<font size="1"><a href="javascript:win_upload()">사진수정</a></font></td>				
+			
+		<div class="mb-3">
+			<label for="inputId" class="form-label">아이디: </label> <input
+				type="hidden" class="form-control" id="inputId" name="id"
+				value="<%=mem.getId() %>"><%=mem.getId() %>
+		</div>
+
+		<div class="mb-3">
+			<label for="inputPassword" class="form-label">비밀번호</label> <input
+				type="password" class="form-control" id="inputPassword" name="pass"
+				>
+		</div>
+
+		<div class="mb-3">
+			<label for="inputName" class="form-label">이름: </label> <input
+				type="hidden" class="form-control" id="inputName" name="name"
+				value="<%=mem.getId() %>"><%=mem.getName() %>
+		</div>
+			
+		<div class="mb-3">
+			<label for="genderSelect" class="form-label">성별: </label><input
+				type="hidden" class="form-control" id="inputGender" name="gender"
+				value="<%=mem.getGender() %>"><%=mem.getGender()==1?" 남":" 여" %>
+		</div>
+
+		<div class="mb-3">
+			<label for="inputBirth" class="form-label">생년월일</label> <input
+				type="text" class="form-control" id="inputBirth" name="birthday"
+				value="<%=mem.getBirthday() %>">
+		</div>
+
+		<div class="mb-3">
+			<label for="inputEmail" class="form-label">이메일</label> <input
+				type="text" class="form-control" id="inputEmail" name="email"
+				value="<%=mem.getEmail() %>">
+		</div>
+
+		<div class="mb-3">
+			<label for="inputPhone" class="form-label">전화번호</label> <input
+				type="text" class="form-control" id="inputPhone" name="tel"
+				value="<%=mem.getTel() %>">
+		</div>
+		
+		<div class="mb-3">
+			<label for="inputAddress" class="form-label">주소</label> <input
+				type="text" class="form-control" id="inputAddress" name="address"
+				value="<%=mem.getAddress() %>">
+		</div>
+
+		<button type="submit" class="w-100 btn btn-lg btn-primary mb-5"
+			>완료</button>
+
+	</form>
+				
 			<tr>
-				<td>��ȭ��ȣ</td>
-				<td colspan="2"><input type="text" name="tel" value="<%=mem.getTel() %>"
-					></td>
-			</tr>
-			<tr>
-				<td>�̸���</td>
-				<td colspan="2"><input type="text" name="email" value="<%=mem.getEmail() %>"
-					></td>
-			</tr>
-			<tr>
-				<td>�ּ�</td>
-				<td colspan="2"><input type="text" name="address" value="<%=mem.getAddress() %>"
-					></td>
-			</tr>
-			<tr>
-				<td colspan="3"><input type="submit" value="ȸ������"> <input
-					type="button" value="��й�ȣ����" onclick="passchg_winopen()"></td>
+				<td colspan="3"><input type="submit" value="회원수정"> <input
+					type="button" value="비밀번호수정" onclick="passchg_winopen()"></td>
 			</tr>
 		</table>
 	</form>
