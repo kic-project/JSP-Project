@@ -2,14 +2,14 @@ package dao;
 
 import java.io.Serializable;
 
-public class CartDao implements Serializable {
+public class CartDTO implements Serializable {
 	private String name;	
 	private int price;		
 	private int cnt;		
 	
-	public CartDao() {}
+	public CartDTO() {}
 
-	public CartDao(String name, int price, int cnt) {
+	public CartDTO(String name, int price, int cnt) {
 		super();
 		this.name = name;
 		this.price = price;

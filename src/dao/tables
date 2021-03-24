@@ -18,7 +18,7 @@ shoplist varchar2(200),
 memlevel varchar2(50),
 coupon varchar2(100),
 orderstatus varchar2(20),
-zip_num varchar2(20),
+zip_num varchar2(20)
 );
 
 
