@@ -1,6 +1,6 @@
 <%@page import="dao.MemberDao"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="dao.CartDao"%>
+<%@page import="dao.CartDTO"%>
 <%@page import="Model.Member"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
@@ -19,12 +19,12 @@ location.href="loginForm.jsp";
 %>
 <%
 	request.setCharacterEncoding("utf-8");
-ArrayList<CartDao> cart = null;
+ArrayList<CartDTO> cart = null;
 Object obj = session.getAttribute("cart");
 if(obj == null) {	
-	cart = new ArrayList<CartDao>();	
+	cart = new ArrayList<CartDTO>();	
 } else {			
-	cart = (ArrayList<CartDao>) obj;
+	cart = (ArrayList<CartDTO>) obj;
 }
 %>
 
@@ -59,7 +59,7 @@ else {
 	int totalSum = 0, total = 0;
 	DecimalFormat df = new DecimalFormat("£Ü#,##0");
 	for(int i = 0; i < cart.size(); i++) {
-		CartDao dto = cart.get(i);
+		CartDTO dto = cart.get(i);
 		out.println("<tr align= 'center'>");
 		out.println("<td>" + "³¯Â¥" + "</td>");
 		out.println("<td>" + (i + 1) + "</td>");

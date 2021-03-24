@@ -1,4 +1,4 @@
-<%@page import="dao.CartDao"%>
+<%@page import="dao.CartDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -6,19 +6,19 @@
 String name = request.getParameter("name");
 String price = request.getParameter("price");
 
-ArrayList<CartDao> cart = null;
+ArrayList<CartDTO> cart = null;
 
 Object obj = session.getAttribute("cart");	
 
 if(obj == null) {	
-	cart = new ArrayList<CartDao>();	
+	cart = new ArrayList<CartDTO>();	
 } else {		
-	cart = (ArrayList<CartDao>) obj;
+	cart = (ArrayList<CartDTO>) obj;
 }
 
 int pos = -1;	
 for(int i = 0; i < cart.size(); i++) {
-	CartDao dto = cart.get(i);
+	CartDTO dto = cart.get(i);
 	if(dto.getName().equals(name)) {
 		pos = 1;
 		dto.setCnt(dto.getCnt() + 1);
@@ -28,7 +28,7 @@ for(int i = 0; i < cart.size(); i++) {
 
 
 if(pos == -1) {
-	CartDao dto = new CartDao();
+	CartDTO dto = new CartDTO();
 	dto.setName(name);
 	dto.setPrice(Integer.parseInt(price.replace(",", "")));
 	dto.setCnt(1);
