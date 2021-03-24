@@ -61,7 +61,7 @@
 
 					<li class="nav-item"><a class="nav-link" href="myPage.jsp?id=<%=login %>">마이페이지</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="loginForm.jsp">로그인</a></li>
+					<li class="nav-item" id="loginButton"><a class="nav-link" href="loginForm.jsp">로그인</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="joinForm.jsp">회원가입</a></li>
 				</ul>

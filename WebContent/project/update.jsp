@@ -28,6 +28,5 @@ if (!login.equals("admin") && !mem.getPass().equals(dbMem.getPass())) {
 %>
 <script type="text/javascript">
     alert("<%=msg%>");
-    location.href="<%=url%>
-	";
+    location.href="<%=url%>";
 </script>
