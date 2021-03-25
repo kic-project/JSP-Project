@@ -20,7 +20,7 @@ public class CartListAction implements Action {
     String url = "Cart.jsp";
 
     HttpSession session = request.getSession();
-    Member login = (Member) session.getAttribute("login");
+    String login=(String)session.getAttribute("login");
     if (login == null) {
       url = "projectServlet?command=login_form";
     } else {
