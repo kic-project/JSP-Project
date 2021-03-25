@@ -1,7 +1,5 @@
 package Model;
 public class Member {
-private String id;
-private String pass;
 private String name;
 private int birthday;
 private int gender;
