@@ -18,7 +18,7 @@ public class CartDao {
 		return instance;
 	}
 
-	public void insertCart(Cart cartVO) {
+	public void insertCart(Cart cart) {
 		String sql = "insert into cart(cseq,id, pseq, quantity)" + " values(cart_seq.nextval,?, ?, ?)";
 
 		Connection conn = null;
@@ -27,9 +27,9 @@ public class CartDao {
 		try {
 			conn = DBconnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cartVO.getId());// CartInsertAction에서 받아온것
-			pstmt.setInt(2, cartVO.getPseq());// CartInsertAction에서 받아온것
-			pstmt.setInt(3, cartVO.getQuantity());// CartInsertAction에서 받아온것
+			pstmt.setString(1, cart.getId());// CartInsertAction에서 받아온것
+			pstmt.setInt(2, cart.getPseq());// CartInsertAction에서 받아온것
+			pstmt.setInt(3, cart.getQuantity());// CartInsertAction에서 받아온것
 
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -54,17 +54,17 @@ public class CartDao {
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Cart cartVO = new Cart();
-				cartVO.setCseq(rs.getInt(1));// cart seq
-				cartVO.setId(rs.getString(2));// member id
-				cartVO.setPseq(rs.getInt(3));// product seq
-				cartVO.setMname(rs.getString(4));// member name
-				cartVO.setPname(rs.getString(5));// product name
-				cartVO.setQuantity(rs.getInt(6));// 수량
-				cartVO.setIndate(rs.getTimestamp(7));// 등록날짜
-				cartVO.setPrice2(rs.getInt(8));// 실제 판매가격
+				Cart cart = new Cart();
+				cart.setCseq(rs.getInt(1));// cart seq
+				cart.setId(rs.getString(2));// member id
+				cart.setPseq(rs.getInt(3));// product seq
+				cart.setMname(rs.getString(4));// member name
+				cart.setPname(rs.getString(5));// product name
+				cart.setQuantity(rs.getInt(6));// 수량
+				cart.setIndate(rs.getTimestamp(7));// 등록날짜
+				cart.setPrice2(rs.getInt(8));// 실제 판매가격
 
-				cartList.add(cartVO);
+				cartList.add(cart);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

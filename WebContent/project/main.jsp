@@ -72,10 +72,10 @@
 	<!-- Categories Navbar -->
 	<nav class="navbar navbar-expand-lg nav-categories">
 		<div class="container col-lg-12">
-			<a class="nav-category-item" href="#">자켓</a> <a
-				class="nav-category-item" href="#">상의</a> <a
-				class="nav-category-item" href="#">하의</a> <a
-				class="nav-category-item" href="#">기타</a>
+			<a class="nav-category-item" href="projectServlet?command=catagory&kind=1">자켓</a> <a
+				class="nav-category-item" href="projectServlet?command=catagory&kind=2">상의</a> <a
+				class="nav-category-item" href="projectServlet?command=catagory&kind=3">하의</a> <a
+				class="nav-category-item" href="projectServlet?command=catagory&kind=4">기타</a>
 		</div>
 	</nav>
 
