@@ -91,7 +91,7 @@ public class BoardDao {
 		}
 		return null;
 	}
-	public Board selectOne1(int num) {
+	public Board selectOne(int num) {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
