@@ -13,7 +13,7 @@ public class MemberDao {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
 		String sql="insert into memberpro"
-				+"(id, pass, name, gender, email, tel, picture, address, point, totalprice, shoplist, memlevel, coupon, orderstatus, birthday, zip_num)"
+				+"(id, pass, name, join_date , birthday, tel, zip_num, email, address,point,totalprice,agree,String memlevel)"
 				
 				+"values(?,?,?,?,?,?,?,?,0,0,null,1,null,null,?,null)";
 		try {
