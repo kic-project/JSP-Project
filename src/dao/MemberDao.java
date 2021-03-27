@@ -13,7 +13,7 @@ public class MemberDao {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
 		String sql="insert into memberpro"
-				+"(id, pass, name, join_date , birthday, tel, zip_num, email, address,point,totalprice,agree,String memlevel)"
+				+"(id, pass, name, join_date , birthday, tel, zip_num, email, address,point,totalprice,agree,memlevel)"
 				
 				+"values(?,?,?,?,?,?,?,?,0,0,null,1,null,null,?,null)";
 		try {
@@ -21,12 +21,16 @@ public class MemberDao {
 			pstmt.setString(1, mem.getId());
 			pstmt.setString(2, mem.getPass());
 			pstmt.setString(3, mem.getName());
-			pstmt.setInt(4, mem.getGender());
-			pstmt.setString(5, mem.getEmail());
+			pstmt.setString(4, mem.getJoin_date());
+			pstmt.setInt(5, mem.getBirthday());
 			pstmt.setString(6, mem.getTel());
-			pstmt.setString(7, mem.getPicture());
-			pstmt.setString(8, mem.getAddress());
-			pstmt.setInt(9, mem.getBirthday());
+			pstmt.setString(7, mem.getZip_num());
+			pstmt.setString(8, mem.getEmail());
+			pstmt.setString(9, mem.getAddress());
+			pstmt.setFloat(10, mem.getPoint());
+			pstmt.setInt(11, mem.getTotalprice());
+			pstmt.setInt(12, mem.getAgree());
+			pstmt.setString(13, mem.getMemlevel());
 			return pstmt.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -49,18 +53,16 @@ public class MemberDao {
 				m.setId(rs.getString("id"));
 				m.setPass(rs.getString("pass"));
 				m.setName(rs.getString("name"));
-				m.setGender(rs.getInt("gender"));
+				m.setJoin_date(rs.getString("join_date"));
 				m.setBirthday(rs.getInt("birthday"));
 				m.setTel(rs.getString("tel"));
+				m.setZip_num(rs.getString("zip_num"));
 				m.setEmail(rs.getString("email"));
-				m.setPicture(rs.getString("picture"));
 				m.setAddress(rs.getString("address"));
 				m.setPoint(rs.getInt("point"));
 				m.setTotalprice(rs.getInt("totalprice"));
-				m.setShoplist(rs.getString("shoplist"));
+				m.setAgree(rs.getInt("agree"));
 				m.setMemlevel(rs.getString("memlevel"));
-				m.setCoupon(rs.getString("coupon"));
-				m.setOrderstatus(rs.getString("orderstatus"));
 				return m;
 			}
 		}catch(SQLException e){
@@ -77,14 +79,20 @@ public class MemberDao {
 	+"email=?, picture=?, address=? where id=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, mem.getName());
-			pstmt.setInt(2, mem.getGender());
-			pstmt.setInt(3, mem.getBirthday());
-			pstmt.setString(4, mem.getTel());
-			pstmt.setString(5, mem.getEmail());
-			pstmt.setString(6, mem.getPicture());
-			pstmt.setString(7, mem.getAddress());
-			pstmt.setString(8, mem.getId());
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mem.getId());
+			pstmt.setString(2, mem.getPass());
+			pstmt.setString(3, mem.getName());
+			pstmt.setString(4, mem.getJoin_date());
+			pstmt.setInt(5, mem.getBirthday());
+			pstmt.setString(6, mem.getTel());
+			pstmt.setString(7, mem.getZip_num());
+			pstmt.setString(8, mem.getEmail());
+			pstmt.setString(9, mem.getAddress());
+			pstmt.setFloat(10, mem.getPoint());
+			pstmt.setInt(11, mem.getTotalprice());
+			pstmt.setInt(12, mem.getAgree());
+			pstmt.setString(13, mem.getMemlevel());
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -122,13 +130,15 @@ public class MemberDao {
 				m.setId(rs.getString("id"));
 				m.setPass(rs.getString("pass"));
 				m.setName(rs.getString("name"));
-				m.setGender(rs.getInt("gender"));
+				m.setJoin_date(rs.getString("join_date"));
+				m.setBirthday(rs.getInt("birthday"));
 				m.setTel(rs.getString("tel"));
+				m.setZip_num(rs.getString("zip_num"));
 				m.setEmail(rs.getString("email"));
-				m.setPicture(rs.getString("picture"));
 				m.setAddress(rs.getString("address"));
 				m.setPoint(rs.getInt("point"));
 				m.setTotalprice(rs.getInt("totalprice"));
+				m.setAgree(rs.getInt("agree"));
 				m.setMemlevel(rs.getString("memlevel"));
 				li.add(m);
 			}
