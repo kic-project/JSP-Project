@@ -1,4 +1,4 @@
-package controller;
+package project.controller;
 
 import java.io.FileReader;
 import java.io.IOException;
