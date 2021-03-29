@@ -10,7 +10,7 @@ public class Order {
 	private String mname;
 	private String zipNum;
 	private String address;
-	private String phone;
+	private String tel;
 	private int pseq;
 	private String pname;
 	private int quantity;
@@ -105,12 +105,12 @@ public class Order {
 		this.address = address;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getTel() {
+		return tel;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	public Timestamp getIndate() {
@@ -124,7 +124,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "OrderVO [odseq=" + odseq + ", oseq=" + oseq + ", id=" + id + ", indate=" + indate + ", mname=" + mname
-				+ ", zipNum=" + zipNum + ", address=" + address + ", phone=" + phone + ", pseq=" + pseq + ", pname="
+				+ ", zipNum=" + zipNum + ", address=" + address + ", tel=" + tel + ", pseq=" + pseq + ", pname="
 				+ pname + ", quantity=" + quantity + ", price2=" + price2 + ", result=" + result + "]";
 	}
 }

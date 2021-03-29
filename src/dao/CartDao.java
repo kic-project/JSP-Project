@@ -3,15 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Model.Cart;
+import Model.Member;
 
 public class CartDao {
-
-	private CartDao() {
-	}
-
 	private static CartDao instance = new CartDao();
 
 	public static CartDao getInstance() {
@@ -19,17 +17,14 @@ public class CartDao {
 	}
 
 	public void insertCart(Cart cart) {
+		Connection conn=DBconnection.getConnection();
 		String sql = "insert into cart(cseq,id, pseq, quantity)" + " values(cart_seq.nextval,?, ?, ?)";
-
-		Connection conn = null;
 		PreparedStatement pstmt = null;
-
 		try {
-			conn = DBconnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cart.getId());// CartInsertAction에서 받아온것
-			pstmt.setInt(2, cart.getPseq());// CartInsertAction에서 받아온것
-			pstmt.setInt(3, cart.getQuantity());// CartInsertAction에서 받아온것
+			pstmt.setString(1, cart.getId());// CartInsertAction�뿉�꽌 諛쏆븘�삩寃�
+			pstmt.setInt(2, cart.getPseq());// CartInsertAction�뿉�꽌 諛쏆븘�삩寃�
+			pstmt.setInt(3, cart.getQuantity());// CartInsertAction�뿉�꽌 諛쏆븘�삩寃�
 
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -38,8 +33,10 @@ public class CartDao {
 			DBconnection.close(conn, pstmt, null);
 		}
 	}
+	
 
-	// userId가 카트에 넣은 모든 값들을 가져옴.
+
+	// userId媛� 移댄듃�뿉 �꽔�� 紐⑤뱺 媛믩뱾�쓣 媛��졇�샂.
 	public ArrayList<Cart> listCart(String userId) {
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
 		String sql = "select * from cart_view where id=? order by cseq desc";
@@ -60,9 +57,9 @@ public class CartDao {
 				cart.setPseq(rs.getInt(3));// product seq
 				cart.setMname(rs.getString(4));// member name
 				cart.setPname(rs.getString(5));// product name
-				cart.setQuantity(rs.getInt(6));// 수량
-				cart.setIndate(rs.getTimestamp(7));// 등록날짜
-				cart.setPrice2(rs.getInt(8));// 실제 판매가격
+				cart.setQuantity(rs.getInt(6));// �닔�웾
+				cart.setIndate(rs.getTimestamp(7));// �벑濡앸궇吏�
+				cart.setPrice2(rs.getInt(8));// �떎�젣 �뙋留ㅺ�寃�
 
 				cartList.add(cart);
 			}
@@ -74,8 +71,8 @@ public class CartDao {
 		return cartList;
 	}
 
-	public void deleteCart(int cseq) {
-		String sql = "delete cart where cseq=?";
+	public void deleteCart(String id) {
+		String sql = "delete cart where id=?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -83,7 +80,7 @@ public class CartDao {
 		try {
 			conn = DBconnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cseq);
+			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
