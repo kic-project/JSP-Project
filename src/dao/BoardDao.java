@@ -15,7 +15,7 @@ public class BoardDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int num=0;
-		String sql1="select boardseq.nextval from dual";
+		String sql1="select boardproseq.nextval from dual";
 		String sql2="insert into boardpro "
 				+" (num,name,pass,subject,content,file1,regdate,"
 				+" readcnt,ref,reflevel,refstep) "
