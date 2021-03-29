@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<% String login = (String) session.getAttribute("login");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,16 +22,14 @@
 <script type="text/javascript">
 	function win_upload() {
 		var op = "width=500, height=150, left=50, top=150";
-		open("pictureimgForm.jsp", '', op);
+		open("pictureimgForm", '', op);
 	}
-
 	function checkId() {
 		var inputId = document.getElementById("inputId");
 		if (inputId == "") {
 			alert("아이디를 입력해주세요");
 			return false;
 		}
-
 		if (!inputId.checkValidity()) {
 			document.getElementById("demo").innerHTML = inpObj.validationMessage;
 		} else {
@@ -42,10 +41,10 @@
 
 <body>
 
-	<!-- Navbar -->
+		<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
-			<a class="navbar-brand" href="main.jsp">Shop</a>
+			<a class="navbar-brand" href="main">Shop</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -57,17 +56,20 @@
 				<ul class="navbar-nav ml-auto">
 
 					<!-- 
-					<li class="nav-item"><a class="nav-link" href="#">소개 <span class="sr-only">(current)</span>
+					<li class="nav-item active"><a class="nav-link" href="#">소개
+							<span class="sr-only">(current)</span>
 					</a></li>
- 					-->
+					 -->
+					
+					<li class="nav-item"><a class="nav-link" href="logout">로그아웃</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="Cart?id=<%=login %>">장바구니</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="cartForm.jsp">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link" href="myPage?id=<%=login %>">마이페이지</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="myPage.jsp">마이페이지</a></li>
+					<li class="nav-item" id="loginButton"><a class="nav-link" href="loginForm">로그인</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="loginForm.jsp">로그인</a></li>
-
-					<li class="nav-item"><a class="nav-link" href="joinForm.jsp">회원가입</a></li>
+					<li class="nav-item"><a class="nav-link" href="joinForm">회원가입</a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,18 +78,18 @@
 	<!-- Categories Navbar -->
 	<nav class="navbar navbar-expand-lg nav-categories">
 		<div class="container col-lg-12">
-			<a class="nav-category-item" href="#">자켓</a> <a
-				class="nav-category-item" href="#">상의</a> <a
-				class="nav-category-item" href="#">하의</a> <a
-				class="nav-category-item" href="#">기타</a>
+			<a class="nav-category-item" href="projectServlet?command=catagory&kind=outer">자켓</a> <a
+				class="nav-category-item" href="projectServlet?command=catagory&kind=top">상의</a> <a
+				class="nav-category-item" href="projectServlet?command=catagory&kind=bottom">하의</a> <a
+				class="nav-category-item" href="projectServlet?command=catagory&kind=etc">기타</a> <a
+				class="nav-category-item" href="/project/board/list">문의</a>
 		</div>
 	</nav>
 
 
-	<!-- 	<form action="join.jsp" name="f" method="post">
+	<!-- 	<form action="join" name="f" method="post">
 		<input type="hidden" name="picture" value="">
 		<table>
-
 			<tr>
 				<td rowspan="4" valign="bottom"><img src="" width="100"
 					height="120" id="pic"><br> <font size="1"><a
@@ -131,7 +133,7 @@
 	<h3 class="mt-3 mb-3 text-center">회원가입</h3>
 
 	<form class="container-md p-3 col-8 mb-5 mx-auto"
-		action="<%=request.getContextPath()%>/project/join.jsp" name="f"
+		action="join" name="f"
 		method="post">
 
 		<div class="mb-3">
@@ -146,38 +148,28 @@
 				placeholder="비밀번호 (숫자, 영문, 특수문자 조합 최소 8자)">
 		</div>
 
-		<div class="mb-3">
+		<!-- <div class="mb-3">
 			<label for="inputPasswordCheck" class="form-label">비밀번호 확인</label> <input
 				type="password" class="form-control" id="inputPasswordCheck"
 				name="check" placeholder="비밀번호 확인">
 		</div>
-
+ -->
 		<div class="mb-3">
 			<label for="inputName" class="form-label">이름</label> <input
 				type="text" class="form-control" id="inputName" name="name"
 				placeholder="이름">
 		</div>
-
+		
 		<div class="mb-3">
-			<label for="genderSelect" class="form-label">성별</label><br /> <select
-				id="genderSelect" name="gender"
-				class="form-control form-select form-select-lg mb-3">
-				<option selected>선택</option>
-				<option value="1">남</option>
-				<option value="2">여</option>
-			</select>
+			<label for="inputName" class="form-label">이름</label> <input
+				type="text" class="form-control" id="inputName" name="join_date"
+				placeholder="가입일">
 		</div>
 
 		<div class="mb-3">
 			<label for="inputBirth" class="form-label">생년월일</label> <input
 				type="text" class="form-control" id="inputBirth" name="birthday"
-				placeholder="생년월일 입력 (yymmdd)">
-		</div>
-
-		<div class="mb-3">
-			<label for="inputEmail" class="form-label">이메일</label> <input
-				type="text" class="form-control" id="inputEmail" name="email"
-				placeholder="이메일@주소">
+				placeholder="생년월일 입력 (yymmdds)">
 		</div>
 
 		<div class="mb-3">
@@ -188,18 +180,30 @@
 		
 		<div class="mb-3">
 			<label for="inputAddress" class="form-label">주소</label> <input
+				type="text" class="form-control" id="inputAddress" name="zip_num"
+				placeholder="우편번호">
+		</div>
+		
+		<div class="mb-3">
+			<label for="inputEmail" class="form-label">이메일</label> <input
+				type="text" class="form-control" id="inputEmail" name="email"
+				placeholder="이메일@주소">
+		</div>
+
+		<div class="mb-3">
+			<label for="inputAddress" class="form-label">주소</label> <input
 				type="text" class="form-control" id="inputAddress" name="address"
 				placeholder="주소 입력 (oo시 oo구 oo동)">
 		</div>
 
-		<div class="mb-3">
+		<!-- <div class="mb-3">
 			<label for="inputRecommender" class="form-label">추천인</label> <input
 				type="text" class="form-control" id="inputRecommender"
 				name="recommender" placeholder="추천인 아이디 입력">
-		</div>
+		</div> -->
 
 		<div class="mb-3 form-check">
-			<input type="checkbox" class="form-check-input" id="checkAll">
+			<input type="checkbox" class="form-check-input" id="checkAll" name="agree" value="1">
 			<label class="form-check-label" for="checkAll">약관 모두 동의</label>
 		</div>
 
