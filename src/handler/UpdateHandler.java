@@ -13,7 +13,7 @@ import dao.BoardDao;
 public class UpdateHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse res){
 		Board board=new Board();
-	    String uploadpath=request.getServletContext().getRealPath("/")+"view/board/upfile/";
+	    String uploadpath=request.getServletContext().getRealPath("/")+"project/view/board/upfile/";
 	    
 	    MultipartRequest multi;
 		try {
@@ -29,14 +29,14 @@ public class UpdateHandler implements CommandHandler{
 	    }
 	    BoardDao dao=new BoardDao();
 	    Board dbBoard=dao.selectOne(board.getNum());
-	    String msg="ºñ¹Ð¹øÈ£°¡ Æ²·È½À´Ï´Ù.";
+	    String msg="ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.";
 	    String url="updateForm?num="+board.getNum();
 	    if(board.getPass().equals(dbBoard.getPass())){
 	    	if(dao.update(board)){
-	    		msg="°Ô½Ã¹° ¼öÁ¤¿Ï·á";
+	    		msg="ê²Œì‹œë¬¼ ìˆ˜ì •ì™„ë£Œ";
 	    		url="list";
 	    	}else{
-	    		msg="°Ô½Ã¹° ¼öÁ¤ ½ÇÆÐ";
+	    		msg="ê²Œì‹œë¬¼ ìˆ˜ì • ì‹¤íŒ¨";
 	    	}
 	    	request.setAttribute("msg", msg);
 	    	request.setAttribute("url", url);
