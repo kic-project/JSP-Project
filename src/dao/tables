@@ -162,4 +162,22 @@ where o.oseq=d.oseq and o.id = m.id and d.pseq = p.pseq;
            
 commit;
 
+-- 게시판
+
+create table boardpro(
+NUM NUMBER(38) primary key,
+NAME VARCHAR2(30), 
+PASS VARCHAR2(20), 
+SUBJECT VARCHAR2(100),
+CONTENT VARCHAR2(4000),
+FILE1 VARCHAR2(100),
+REGDATE DATE,
+READCNT NUMBER(10),
+REF NUMBER(38),
+REFLEVEL NUMBER(3),
+REFSTEP NUMBER(5));
+
+
+create sequence boardproseq;
+
 
