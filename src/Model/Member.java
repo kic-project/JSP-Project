@@ -12,7 +12,9 @@ public class Member {
     private String email;
     private String address;
     private float point;
+private int tempPoint;
     private int totalprice;
+private int tempTotalprice;
     private int agree;
     private String memlevel;
 	public String getId() {
@@ -75,11 +77,23 @@ public class Member {
 	public void setPoint(float point) {
 		this.point = point;
 	}
+	public int getTempPoint() {
+		return tempPoint;
+	}
+	public void setTempPoint(int tempPoint) {
+		this.tempPoint = tempPoint;
+	}
 	public int getTotalprice() {
 		return totalprice;
 	}
 	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
+	}
+	public int getTempTotalprice() {
+		return tempTotalprice;
+	}
+	public void setTempTotalprice(int tempTotalprice) {
+		this.tempTotalprice = tempTotalprice;
 	}
 	public int getAgree() {
 		return agree;
@@ -96,10 +110,9 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", pass=" + pass + ", name=" + name + ", join_date=" + join_date + ", birthday="
-				+ birthday + ", tel=" + tel + ", zip_num=" + zip_num + ", email=" + email + ", address=" + address
-				+ ", point=" + point + ", totalprice=" + totalprice + ", agree=" + agree + ", memlevel=" + memlevel
-				+ "]";
+			+ birthday + ", tel=" + tel + ", zip_num=" + zip_num + ", email=" + email + ", address=" + address
+			+ ", point=" + point + ", tempPoint=" + tempPoint + ", totalprice=" + totalprice + ", tempTotalprice="
+			+ tempTotalprice + ", agree=" + agree + ", memlevel=" + memlevel + "]";
 	}
-    
-    
+
 }
