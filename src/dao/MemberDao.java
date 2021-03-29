@@ -13,9 +13,9 @@ public class MemberDao {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
 		String sql="insert into memberpro"
-				+"(id, pass, name, join_date , birthday, tel, zip_num, email, address,point,totalprice,agree,memlevel)"
+				+"(id, pass, name, join_date, birthday, tel, zip_num, email, address, point, totalprice, agree, memlevel)"
 				
-				+"values(?,?,?,?,?,?,?,?,0,0,null,1,null,null,?,null)";
+				+"values(?,?,?,?,?,?,?,?,?,0,0,?,welcome)";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem.getId());
@@ -27,10 +27,7 @@ public class MemberDao {
 			pstmt.setString(7, mem.getZip_num());
 			pstmt.setString(8, mem.getEmail());
 			pstmt.setString(9, mem.getAddress());
-			pstmt.setFloat(10, mem.getPoint());
-			pstmt.setInt(11, mem.getTotalprice());
-			pstmt.setInt(12, mem.getAgree());
-			pstmt.setString(13, mem.getMemlevel());
+			pstmt.setInt(10, mem.getAgree());
 			return pstmt.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -75,24 +72,17 @@ public class MemberDao {
 	public int update(Member mem) {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
-		String sql="update memberpro set name=?, gender=?, birthday=?, tel=?,"
-	+"email=?, picture=?, address=? where id=?";
+		String sql="update memberpro set name=?, birthday=?, tel=?, zip_num=?"
+	+"email=?, address=? where id=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, mem.getId());
-			pstmt.setString(2, mem.getPass());
-			pstmt.setString(3, mem.getName());
-			pstmt.setString(4, mem.getJoin_date());
-			pstmt.setInt(5, mem.getBirthday());
-			pstmt.setString(6, mem.getTel());
-			pstmt.setString(7, mem.getZip_num());
-			pstmt.setString(8, mem.getEmail());
-			pstmt.setString(9, mem.getAddress());
-			pstmt.setFloat(10, mem.getPoint());
-			pstmt.setInt(11, mem.getTotalprice());
-			pstmt.setInt(12, mem.getAgree());
-			pstmt.setString(13, mem.getMemlevel());
+			pstmt.setString(1, mem.getName());
+			pstmt.setInt(2, mem.getBirthday());
+			pstmt.setString(3, mem.getTel());
+			pstmt.setString(4, mem.getZip_num());
+			pstmt.setString(5, mem.getEmail());
+			pstmt.setString(6, mem.getAddress());
+			pstmt.setString(7, mem.getId());
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -168,7 +158,7 @@ public class MemberDao {
 	public int totalorder(Member mem) {
 		Connection conn=DBconnection.getConnection();
 		PreparedStatement pstmt=null;
-		String sql="update memberpro set point=?, totalprice=?, memlevel=?, shoplist=? where id=?";
+		String sql="update memberpro set point=?, totalprice=?, memlevel=? where id=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setDouble(1, mem.getPoint());
@@ -183,8 +173,7 @@ public class MemberDao {
 				pstmt.setString(3, "gold");
 			else
 				pstmt.setString(3, "green");
-			pstmt.setString(4, mem.getShoplist());
-			pstmt.setString(5, mem.getId());
+			pstmt.setString(4, mem.getId());
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
