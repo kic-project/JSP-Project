@@ -1,84 +1,40 @@
-<%@page import="dao.MemberDao"%>
-<%@page import="java.text.DecimalFormat"%>
-<%@page import="dao.CartDTO"%>
-<%@page import="Model.Member"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<%
-	String login=(String)session.getAttribute("login");
-    String id=request.getParameter("id");
-    if(login==null||login.trim().equals("")){
-%>
-<script type="text/javascript">
-alert("·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù. ·Î±×ÀÎÇÏ¼¼¿ä.")
-location.href="loginForm.jsp";
-</script>
-<%
-	}else{
-	Member mem=new MemberDao().selectOne(id);
-%>
-<%
-	request.setCharacterEncoding("utf-8");
-ArrayList<CartDTO> cart = null;
-Object obj = session.getAttribute("cart");
-if(obj == null) {	
-	cart = new ArrayList<CartDTO>();	
-} else {			
-	cart = (ArrayList<CartDTO>) obj;
-}
-%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%> 
+<%@ include file="header.jsp" %>  
+<%@ include file="ordercss.jsp" %> 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Cart View</title>
-</head>
-<body>
-<div align="center">
-	<h3>±¸¸Å ¸ñ·Ï</h3>
-	<table border="1">
-		<tr>
-			<th>ÀÏÀÚ</th>
-			<th>¹øÈ£</th>
-			<th>»óÇ°¸í</th>
-			<th>´Ü°¡</th>
-			<th>ÁÖ¹® ¼ö·®</th>
-			<th>°¡°İ</th>
-		</tr>
-<%
-	if(cart.size() == 0) {
-	out.println("<tr align='center'>");
-	out.println("<td colspan= '6'>");
-	out.println("±¸¸ÅÇÑ »óÇ°ÀÌ ¾ø½À´Ï´Ù.");
-	out.println("<a href= 'ShopMallMain.jsp'>ÁÖ¹®ÇÏ±â</a>");
-	out.println("</td>");
-	out.println("</tr>");} 
 
-else {
-	int totalSum = 0, total = 0;
-	DecimalFormat df = new DecimalFormat("£Ü#,##0");
-	for(int i = 0; i < cart.size(); i++) {
-		CartDTO dto = cart.get(i);
-		out.println("<tr align= 'center'>");
-		out.println("<td>" + "³¯Â¥" + "</td>");
-		out.println("<td>" + (i + 1) + "</td>");
-		out.println("<td>" + dto.getName() + "</td>");
-		out.println("<td>" + df.format(dto.getPrice()) + "</td>");
-		out.println("<td>" + dto.getCnt() + "</td>");
-		total = dto.getPrice() * dto.getCnt();
-		out.println("<td>" + df.format(total) + "</td>");
-		out.println("</tr>");
-		totalSum += total;}
-		out.println("<tr>");
-		out.println("<td colspan= '5' align='center'> ÃÑÇÕ°è");
-		out.println("<td>" + df.format(totalSum) + "</td>");
-		out.println("</td>");
-		out.println("</tr>");
-		mem.setTotalprice(totalSum);}
-%>
-	</table>
-</div>
-</body>
-</html>
-<%}%>
+<head>
+
+	
+ <h3 class="mt-3 mb-3 text-center">ê²°ì œë‚´ì—­</h3>
+	
+	<div class="container-md p-3 col-8 mb-5 mx-auto text-center">
+	    <form name="formm" method="post">
+      <table class="table table-bordered">
+      <tr>
+        <th>ì£¼ë¬¸ì¼ì</th> <th>ì£¼ë¬¸ë²ˆí˜¸</th> <th>ìƒí’ˆëª…</th> <th>ê²°ì œ ê¸ˆì•¡</th> <th>ì£¼ë¬¸ ìƒì„¸</th> </th>    
+      </tr>
+      <c:forEach items="${orderList}"  var="order">
+      <tr>  
+        <td> <fmt:formatDate value="${order.indate}" type="date"/></td>
+        <td> ${order.oseq} </td>    
+        <td> ${order.pname} </td>
+        <td> <fmt:formatNumber value="${order.price2}" type="currency"/> </td>
+        <td> <a href="projectServlet?command=order_detail&oseq=${order.oseq}"> ì¡°íšŒ </a></td>
+      </tr>
+      </c:forEach>    
+      </table>   
+         <br/>  
+     <table>   
+     <tr id="buttons" style="float: right">
+       <input type="button"    value="ë©”ì¸í™”ë©´ìœ¼ë¡œ"  class="cancel"  
+onclick="location.href='projectServlet?command=main'">
+ </table>
+ <br/> 
+    </form>  
+  </article>
+  
+  
+<%@ include file="footer.jsp" %> 

@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>  
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="header.jsp" %>  
+<%@ include file="ordercss.jsp" %> 
+<!DOCTYPE html>
+<html>
 
-     
+<head>
+
+	    
   <article>
     <h3 align="center" > 카테고리 </h3>     
     <c:forEach items="${productKindList}"  var="product">
@@ -22,4 +27,5 @@
     </c:forEach>    
     <div class="clear"></div>
   </article>
-   
+  
+<%@ include file="footer.jsp" %> 
