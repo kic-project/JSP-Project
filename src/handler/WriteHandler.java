@@ -12,7 +12,7 @@ import dao.BoardDao;
 
 public class WriteHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse res){
-	    String uploadpath=request.getServletContext().getRealPath("/")+"view/board/upfile/";
+	    String uploadpath=request.getServletContext().getRealPath("/")+"project/view/board/upfile/";
 	    int size=10*1024*1024;
 	    MultipartRequest multi;
 		try {
@@ -24,10 +24,10 @@ public class WriteHandler implements CommandHandler{
 	    board.setContent(multi.getParameter("content"));
 	    board.setFile1(multi.getFilesystemName("file1"));
 	    BoardDao dao=new BoardDao();
-	    String msg="°Ô½Ã¹° µî·Ï ½ÇÆĞ";
+	    String msg="ê²Œì‹œë¬¼ ë“±ë¡ ì‹¤íŒ¨";
 	    String url="writeForm";
 	    if(dao.insert(board)){
-	    	msg="°Ô½Ã¹° µî·Ï ¼º°ø";
+	    	msg="ê²Œì‹œë¬¼ ë“±ë¡ ì„±ê³µ";
 	    	url="list";
 	    	request.setAttribute("msg", msg);
 	    	request.setAttribute("url", url);
