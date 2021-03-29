@@ -1,6 +1,8 @@
 package project.controller;
 
-import project.controller.action.*;
+
+
+import controller.action.*;
 
 public class ActionFactory {
   private static ActionFactory instance = new ActionFactory();
@@ -26,9 +28,17 @@ public class ActionFactory {
 	      action = new CartListAction();
 	    } else if (command.equals("login_form")) {
 	        action = new LoginFormAction();
-	      } else if (command.equals("login")) {
+	    } else if (command.equals("login")) {
 	        action = new LoginAction();
-	    return action;
-	  }
+	    } else if (command.equals("order_all")) {
+	        action = new OrderAllAction();
+	    } else if (command.equals("order_insert")) {
+	        action = new OrderInsertAction();
+	    } else if (command.equals("order_list")) {
+	        action = new OrderListAction();    
+	    } else if (command.equals("order_detail")) {
+	        action = new OrderDetailAction();
+	    }
+	    
 		return action;}
 	}
